@@ -21,7 +21,8 @@ if n ~= size(X,1)
 end
 
 % evaluate kernel matrix
-K = kern(X);
+sx = median_inter(X);
+K = kern(X,X,sx);
 
 % evaluate the kernel h 
 G = gres(Z,theta);
