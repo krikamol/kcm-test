@@ -1,4 +1,4 @@
-function [MH,GM,DEC] = kcm(Z,X,gres,theta,kern,bsize,alpha)
+function [mh,gm,dec] = kcm(Z,X,gres,theta,kern,bsize,alpha)
 %KCM: The kernel conditional moment (KCM) test. 
 %   
 %   INPUT:  Z - vector of observations
@@ -9,9 +9,9 @@ function [MH,GM,DEC] = kcm(Z,X,gres,theta,kern,bsize,alpha)
 %           bsize - bootstrap sample size
 %           alpha - significance level
 %
-%   OUTPUT: MH - value of the test statistic
-%           GM - (1-alpha)-quantile of the bootstrap statistics
-%           DEC - result of hypothesis testing (1: reject, 0: fail to reject)
+%   OUTPUT: mh - value of the test statistic
+%           gm - (1-alpha)-quantile of the bootstrap statistics
+%           dec - result of hypothesis testing (1: reject, 0: fail to reject)
 %
 
 % check the compatibility of data dimensions
@@ -21,30 +21,39 @@ if n ~= size(X,1)
 end
 
 % evaluate kernel matrix
+K = kern(X);
 
 % evaluate the kernel h 
+G = gres(Z,theta);
+H = (G*G').*K;
 
 % evaluate the test statistic
+mh = sum(sum(H))/(n*n) - sum(diag(H))/n;
 
 % bootstrapping
 bvals = zeros(1,bsize);
 for b=1:bsize
-    % draw sample from Multinomial
-    w = mnrnd(n,repmat(1./n,1,n));
+    % draw multinomial random samples
+    w = mnrnd(n,repmat(1./n,1,n)) - repmat(1./n,1,n);
     
     % calculate bootstrap test statistic
-    Mhs = ...
+    WH = (w'*w).*H;
+    mhs = sum(sum(WH)) - sum(diag(WH));
     
     % record the value
-    bvals[b] = n*Mhs;
+    bvals(b) = n*mhs;
     
 end
 
 % calculate the (1-\alpha)-quantile of the recorded statistics
-GM = quantile(bval,1-alpha);
+gm = quantile(bval,1.-alpha);
 
 % perform the test
-DEC = ...
+dec = 0;
+if gm < n*Mh
+    dec = 1;
+end
+
 
 end
 
