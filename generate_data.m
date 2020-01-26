@@ -35,7 +35,7 @@ elseif strcmp(dgp,'simeq')
     alpha_s = 1;
     beta_2 = 1;
     
-    
+    % TODO
     
     
     Z = [Q,P,R,W];
