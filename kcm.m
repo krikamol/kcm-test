@@ -23,7 +23,7 @@ if n ~= size(X,1)
 end
 
 % calculate the median distance of X and evaluate the kernel k
-sx = median_inter(X);
+sx = sqrt(median_inter(X));
 K = kern(X,X,sx);
 
 % evaluate the generalized residuals and the kernel h_theta
@@ -35,13 +35,14 @@ mh = (sum(sum(Ht)) - sum(diag(Ht)))/(n*(n-1));
 
 % approximate critical values via bootstrapping 
 bvals = zeros(1,bsize);
-p = repmat(1./n,1,n);
+p = repmat(1.0/n,1,n);
 for b=1:bsize
+    
     % draw multinomial random samples
     w = mnrnd(n,p) - repmat(1.0/n,1,n);
     
     % calculate bootstrap test statistic
-    WH = (w*w').*Ht;
+    WH = (w'*w).*Ht;
     mhs = sum(sum(WH)) - sum(diag(WH));
     
     % record the bootstrap value
@@ -57,7 +58,6 @@ dec = 0;
 if gm < n*mh
     dec = 1;
 end
-
 
 end
 

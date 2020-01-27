@@ -3,7 +3,7 @@ function generate_plot(ys,xv,xl,yl,pltitle,output_file)
 %   Detailed explanation goes here
 
 set(gcf,'Visible','on');
-plot(xv,ys);
+plot(xv,ys,'LineWidth',2);
 xlabel(xl);
 ylabel(yl);
 title(pltitle);

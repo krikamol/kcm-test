@@ -31,7 +31,8 @@ for i=1:num_exps
     
     % estimate the parameters
     theta = estimate_parameters(dgp,Z);
-        
+    theta = [1.0,2.0];
+    
     % conduct the tests
     z = [Z.y, Z.x];
     x = X.x;
