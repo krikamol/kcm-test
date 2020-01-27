@@ -11,23 +11,21 @@ function [Z,X,gres] = generate_data(dgp,delta,n)
 %       gres - a function handle of generalized residual function
 %
 
-rng('default') % For reproducibility
-
 if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     % 
-    theta_1 = 1; 
-    theta_2 = 2;
+    theta_1 = 1.0; 
+    theta_2 = 2.0;
     inv_mill_ratio = @(a) normpdf(a)./normcdf(a);
     
     Xs = normrnd(0,1,[n,1]);
     
-    err = normrnd(0,1,[n,1]); % homoskedastic noise
+    err = normrnd(0,0.01,[n,1]); % homoskedastic noise
     if strcmp(dgp,'linreg_het')
         err = err.*sqrt(0.1 + 0.1.*(Xs.^2)); % heteroskedastic noise
     end
     
     Y = theta_1 + theta_2.*Xs + delta.*inv_mill_ratio((theta_1 + theta_2.*Xs)) + err;
- 
+    
     X = struct('x',Xs);
     Z = struct('y',Y,'x',Xs);
     gres = @gres_linear;

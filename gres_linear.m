@@ -6,7 +6,6 @@ function [ gvec ] = gres_linear(Z,theta)
 
 y = Z(:,1);
 x = Z(:,2);
-n = length(y);
 
 gvec = y - theta(1) - theta(2).*x;
 

@@ -21,8 +21,6 @@ true_decs = zeros(1,num_exps);
 
 for i=1:num_exps
     
-    % generate data
-    
     if length(delta) == 1
         cur_delta = delta;
     else
@@ -33,7 +31,7 @@ for i=1:num_exps
     
     % estimate the parameters
     theta = estimate_parameters(dgp,Z);
-
+        
     % conduct the tests
     z = [Z.y, Z.x];
     x = X.x;
