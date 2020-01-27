@@ -1,4 +1,4 @@
-function [dec,mh,gm,bvals] = kcm(Z,X,gres,theta,kern,bsize,alpha)
+function [dec,mh,p,bvals] = kcm(Z,X,gres,theta,kern,bsize,alpha)
 %KCM: The kernel conditional moment (KCM) test. 
 %   
 %   INPUT:  Z - vector of observations
@@ -11,7 +11,7 @@ function [dec,mh,gm,bvals] = kcm(Z,X,gres,theta,kern,bsize,alpha)
 %
 %   OUTPUT: dec - result of hypothesis testing (1: reject, 0: fail to reject)
 %           mh - value of the test statistic
-%           gm - (1-alpha)-quantile of the bootstrap statistics
+%           p - the p-value
 %           bvals - a vector of bootstrap statistics
 %
 
@@ -29,33 +29,29 @@ K = kern(X,X,sx);
 % evaluate the generalized residuals and the kernel h_theta
 G = gres(Z,theta);
 Ht = (G*G').*K;
+Hu = Ht - diag(diag(Ht));
 
 % calculate the KCM test statistic
-mh = (sum(sum(Ht)) - sum(diag(Ht)))/(n*(n-1));
+mh = sum(sum(Hu))/(n*(n-1));
 
 % approximate critical values via bootstrapping 
 bvals = zeros(1,bsize);
-p = repmat(1.0/n,1,n);
 for b=1:bsize
     
     % draw multinomial random samples
-    w = mnrnd(n,p) - repmat(1.0/n,1,n);
+    w = mnrnd(n,ones(1,n)/n)/n - 1/n; 
     
     % calculate bootstrap test statistic
-    WH = (w'*w).*Ht;
-    mhs = sum(sum(WH)) - sum(diag(WH));
+    bvals(b) = w*Hu*w';
     
-    % record the bootstrap value
-    bvals(b) = n*mhs;
-
 end
 
-% calculate the (1-alpha)-quantile of the bootstrap statistics
-gm = quantile(bvals,1-alpha);
+% calculate the p-value using bootstrap statistics
+p = mean(bvals >= mh);
 
 % conduct the test
 dec = 0;
-if gm < n*mh
+if p < alpha
     dec = 1;
 end
 
