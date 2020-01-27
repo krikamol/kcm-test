@@ -6,6 +6,7 @@ set(gcf,'Visible','on');
 plot(xv,ys,'LineWidth',2);
 xlabel(xl);
 ylabel(yl);
+ylim([0 0.2]);
 title(pltitle);
 %saveas(gcf,output_file);
 

@@ -1,5 +1,5 @@
 function [dec,mh,p,bvals] = kcm(Z,X,gres,theta,kern,bsize,alpha)
-%KCM: The kernel conditional moment (KCM) test. 
+%KCM: The kernel conditional moment (KCM) test.
 %   
 %   INPUT:  Z - vector of observations
 %           X - subvector of Z
@@ -39,10 +39,10 @@ bvals = zeros(1,bsize);
 for b=1:bsize
     
     % draw multinomial random samples
-    w = mnrnd(n,ones(1,n)/n)/n - 1/n; 
+    w = mnrnd(n,ones(1,n)/n)/n; 
     
     % calculate bootstrap test statistic
-    bvals(b) = w*Hu*w';
+    bvals(b) = (w-1/n)*Hu*(w'-1/n);
     
 end
 

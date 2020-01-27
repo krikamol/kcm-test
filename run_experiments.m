@@ -7,13 +7,13 @@ addpath('./utils')
 rng("default") % For reproducibility
 
 alpha = 0.05;
-bsize = 200;
+bsize = 500;
 
 %% Experiment 1
 
 dgp = "linreg_hom";
-ns = [20,50,80,100,120,150,180,200];
-delta = 0.05;
-num_repeats = 100;
+ns = [100,200,300,400,500,600,700,800,900,1000];
+delta = 0.0;
+num_repeats = 200;
 
 multiple_experiments(dgp,ns,delta,num_repeats,bsize,alpha);

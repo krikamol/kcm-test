@@ -13,7 +13,7 @@ for i=1:length(ns)
 
 end
 
-generate_plot(pwrs,ns,"sample size","power",dgp,"test_power.pdf");
-%generate_plot(errs,ns,"sample size","Type-I Error",dgp,"test_error.pdf");
+%generate_plot(pwrs,ns,"sample size","power",dgp,"test_power.pdf");
+generate_plot(errs,ns,"sample size","Type-I Error",dgp,"test_error.pdf");
 
 end
