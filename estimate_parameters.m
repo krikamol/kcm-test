@@ -8,8 +8,8 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     y = Z.y;
     x = Z.x;
     
-    coeffs = fitlm(y,x);
-    theta = [coeffs(2),coeffs(1)];
+    mdl = fitlm(y,x);
+    theta = [mdl.Coefficients.Estimate(1),mdl.Coefficients.Estimate(2)];
     
 elseif strcmp(dgp,'simeq')
     %

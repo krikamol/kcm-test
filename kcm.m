@@ -3,9 +3,9 @@ function [dec,mh,gm,bvals] = kcm(Z,X,gres,theta,kern,bsize,alpha)
 %   
 %   INPUT:  Z - vector of observations
 %           X - subvector of Z
-%           gres - vector-valued generalized residual function
+%           gres - vector-valued generalized residual function handle
 %           theta - parameter value for gres function
-%           kern - positive definite kernel function
+%           kern - positive definite kernel function handle
 %           bsize - bootstrap sample size
 %           alpha - significance level
 %
@@ -37,10 +37,10 @@ mh = sum(sum(H))/(n*n) - sum(diag(H))/n;
 bvals = zeros(1,bsize);
 for b=1:bsize
     % draw multinomial random samples
-    w = mnrnd(n,repmat(1./n,1,n)) - repmat(1./n,1,n);
+    w = mnrnd(n,repmat(1./n,n,1)) - repmat(1./n,n,1);
     
     % calculate bootstrap test statistic
-    WH = (w'*w).*H;
+    WH = (w*w').*H;
     mhs = sum(sum(WH)) - sum(diag(WH));
     
     % record the bootstrap value
@@ -52,7 +52,7 @@ gm = quantile(bvals,1.-alpha);
 
 % conduct the test
 dec = 0;
-if gm < n*Mh
+if gm < n*mh
     dec = 1;
 end
 

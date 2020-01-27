@@ -4,11 +4,11 @@ function [ gvec ] = gres_linear(Z,theta)
 %   INPUTS: Z=(X,Y) and parameter value theta=(theta_1,theta_2).
 %   OUTPUTL gvec - the vector of generalized residuals
 
-X = Z(1);
-Y = Z(2);
-n = length(Y);
+y = Z(:,1);
+x = Z(:,2);
+n = length(y);
 
-gvec = Y - repmat(theta(1),n,1) - repmat(theta(2),n,1).*X;
+gvec = y - theta(1) - theta(2).*x;
 
 end
 

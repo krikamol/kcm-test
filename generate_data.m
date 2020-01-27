@@ -1,4 +1,4 @@
-function [Z,X] = generate_data(dgp,delta,n)
+function [Z,X,gres] = generate_data(dgp,delta,n)
 %GENERATE_DATA generates data according to the specified DGP.
 %   
 %   INPUT: 
@@ -8,6 +8,7 @@ function [Z,X] = generate_data(dgp,delta,n)
 %
 %   OUTPUT: 
 %       Z,X - the data matrices
+%       gres - a function handle of generalized residual function
 %
 
 rng('default') % For reproducibility
@@ -18,15 +19,18 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     theta_2 = 2;
     inv_mill_ratio = @(a) normpdf(a)./normcdf(a);
     
-    X = normrnd(0,1,[n,1]);
+    Xs = normrnd(0,1,[n,1]);
     
     err = normrnd(0,1,[n,1]); % homoskedastic noise
     if strcmp(dgp,'linreg_het')
-        err = err.*sqrt(0.1 + 0.1.*(X.^2)); % heteroskedastic noise
+        err = err.*sqrt(0.1 + 0.1.*(Xs.^2)); % heteroskedastic noise
     end
     
-    Y = theta_1 + theta_2.*X + delta.*inv_mill_ratio((theta_1 + theta_2.*X)./delta) + err;
-    Z = [Y,X];
+    Y = theta_1 + theta_2.*Xs + delta.*inv_mill_ratio((theta_1 + theta_2.*Xs)) + err;
+ 
+    X = struct('x',Xs);
+    Z = struct('y',Y,'x',Xs);
+    gres = @gres_linear;
     
 elseif strcmp(dgp,'simeq')
     %
@@ -37,9 +41,9 @@ elseif strcmp(dgp,'simeq')
     
     % TODO
     
-    
-    Z = [Q,P,R,W];
-    X = [R,W];
+    Z = struct('q',Q,'p',P,'r',R,'w',W);
+    X = struct('r',R,'w',W);
+    gres = @gres_simultaneous;
     
 else
     % no specified dgp 
