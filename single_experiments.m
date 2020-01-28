@@ -33,9 +33,7 @@ for i=1:num_exps
     theta = estimate_parameters(dgp,Z);
     
     % conduct the tests
-    z = [Z.y, Z.x];
-    x = X.x;
-    [h,~,~,~] = kcm(z,x,gres,theta,@gaussrbf,bsize,alpha);
+    [h,~,~,~] = kcm(Z,X,gres,theta,@gaussrbf,bsize,alpha);
     decs(i) = h;
     
     true_decs(i) = cur_delta > 0;

@@ -9,5 +9,7 @@ dist = abs(A-B);
 dist = reshape(dist,[],1);
 mdx = median(dist);
 
+%mdx = median(squareform(squaredist(X)));
+
 end
 

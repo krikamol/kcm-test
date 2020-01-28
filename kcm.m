@@ -16,16 +16,15 @@ function [dec,mh,p,bvals] = kcm(Z,X,gres,theta,kern,bsize,alpha)
 %
 
 % check the compatibility of data dimensions
-n = size(Z,1);
-if n ~= size(X,1)
+n = size(Z.mat,1);
+if n ~= size(X.mat,1)
     % exit with an error message
     error("KCM: Z and X must have the same number of rows.");
 end
 
 % calculate the median distance of X and evaluate the kernel k
-%sx = sqrt(median_inter(X));
-sx = median_inter(X);
-K = kern(X,X,sx);
+sx = sqrt(median_inter(X.mat));
+K = kern(X.mat,X.mat,sx);
 
 % evaluate the generalized residuals and the kernel h_theta
 G = gres(Z,theta);

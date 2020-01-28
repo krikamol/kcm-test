@@ -26,8 +26,12 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     
     Y = theta_1 + theta_2.*Xs + delta.*inv_mill_ratio((theta_1 + theta_2.*Xs)) + err;
     
-    X = struct('x',Xs);
     Z = struct('y',Y,'x',Xs);
+    X = struct('x',Xs); 
+    
+    Z.mat = [Z.y,Z.x];
+    X.mat = [X.x];
+    
     gres = @gres_linear;
     
 elseif strcmp(dgp,'simeq')
@@ -47,6 +51,10 @@ elseif strcmp(dgp,'simeq')
     
     Z = struct('q',Q,'p',P,'r',R,'w',W);
     X = struct('r',R,'w',W);
+    
+    Z.mat = [Z.q,Z.p,Z.r,Z.w];
+    X.mat = [X.r,X.w];
+    
     gres = @gres_simultaneous;
     
 else
