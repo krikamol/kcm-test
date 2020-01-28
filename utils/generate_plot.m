@@ -1,13 +1,20 @@
-function generate_plot(ys,xv,xl,yl,pltitle,output_file)
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
+function generate_plot(ys,xv,xl,yl,pltitle,legs,outfile)
+%GENERATE_PLOT produces beautiful plot for the paper
 
 set(gcf,'Visible','on');
-plot(xv,ys,'LineWidth',2);
-xlabel(xl);
-ylabel(yl);
-ylim([0 0.2]);
-title(pltitle);
-%saveas(gcf,output_file);
+
+ls = ["-ok","--*r",":xb","-.^m"];
+
+for i=1:size(ys,1)
+    plot(xv,ys(i,:),char(ls(i)),'LineWidth',3);
+end
+
+xlabel(xl,'FontSize',18,'Interpreter','latex');
+ylabel(yl,'FontSize',18,'Interpreter','latex');
+ylim([0 1]);
+title(pltitle,'FontSize',20,'Interpreter','latex');
+legend(legs);
+
+saveas(gcf,char(outfile),'epsc');
 
 end

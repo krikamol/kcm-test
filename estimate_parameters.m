@@ -4,16 +4,15 @@ function [ theta ] = estimate_parameters(dgp,Z)
 
 if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
 
-    % perform linear regression
+    % fit linear regression
     y = Z.y;
     x = Z.x;
     
-    mdl = fitlm(y,x);
-    theta = [mdl.Coefficients.Estimate(1),mdl.Coefficients.Estimate(2)];
+    p = polyfit(x,y,1);
+    theta = [p(2), p(1)];
     
 elseif strcmp(dgp,'simeq')
     %
-      
 else
     % no specified dgp 
     error('KCM: The specified DGP is unavailable.');

@@ -13,7 +13,16 @@ for i=1:length(ns)
 
 end
 
-%generate_plot(pwrs,ns,"sample size","power",dgp,"test_power.pdf");
-generate_plot(errs,ns,"sample size","Type-I Error",dgp,"test_error.pdf");
+if strcmp(dgp,'linreg_hom')
+    plot_title = 'Linear Regression (HM)';
+elseif strcmp(dgp,'linreg_het')
+    plot_title = 'Linear Regression (HT)';
+elseif strcmp(dgp,'simeq')
+    plot_title = 'Simultaneous Equations';
+end
+
+legs = ['KCM'];
+generate_plot(pwrs,ns,"Sample Size ($n$)","Test Power ($1-\beta$)",plot_title,legs,strcat(dgp,'_test_power.eps'));
+generate_plot(errs,ns,"Sample Size ($n$)","Type-I Error",plot_title,legs,strcat(dgp,'_type1_error.eps'));
 
 end
