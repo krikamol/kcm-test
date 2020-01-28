@@ -12,7 +12,10 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     theta = [p(2), p(1)];
     
 elseif strcmp(dgp,'simeq')
-    %
+    
+    % two-stage least square
+    theta = [-1,1,1,1];
+    
 else
     % no specified dgp 
     error('KCM: The specified DGP is unavailable.');
