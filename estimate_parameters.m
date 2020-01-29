@@ -16,6 +16,10 @@ elseif strcmp(dgp,'simeq')
     % two-stage least square
     theta = [-1,1,1,1];
     
+    %Pz = z.'*((z*z.')\z);
+    %A = ((x*Pz*x.')\x)*Pz;
+    %theta = A'*y;
+    
 else
     % no specified dgp 
     error('KCM: The specified DGP is unavailable.');

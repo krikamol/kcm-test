@@ -2,7 +2,7 @@
 %
 addpath('./utils')  
 
-%% initialize parameters
+%% Initialize parameters
 
 rng(9) % For reproducibility
 
