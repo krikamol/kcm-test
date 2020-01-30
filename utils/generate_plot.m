@@ -1,12 +1,12 @@
 function generate_plot(ys,xv,xl,yl,pltitle,legs,outfile)
 %GENERATE_PLOT produces beautiful plot for the paper
 
+figure();
 set(gcf,'Visible','on');
 
 ls = ["-ok","--*r",":xb","-.^m"];
-
 for i=1:size(ys,1)
-    plot(xv,ys(i,:),char(ls(i)),'LineWidth',3);
+    plot(xv,ys(i,:),char(ls(i)),'LineWidth',3); hold on;
 end
 
 xlabel(xl,'FontSize',18,'Interpreter','latex');

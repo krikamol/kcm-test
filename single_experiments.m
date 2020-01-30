@@ -46,8 +46,8 @@ for i=1:num_exps
         decs(i) = h;
     elseif strcmp(test,'mtest')
         % M-test
-    else 
-        %
+    else
+        error('KCM: The specified test does not exist.');
     end
         
     true_decs(i) = cur_delta > 0;

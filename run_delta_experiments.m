@@ -1,4 +1,4 @@
-%% run experiments with varying sample sizes 
+%% experiments with varying values of delta
 %
 addpath('./utils')  
 
@@ -7,10 +7,10 @@ addpath('./utils')
 rng(9) % For reproducibility
 
 alpha = 0.05;
-delta = 0.1;
+delta = [0.01,0.05,0.1,0.5];
 bsize = 500;
 num_repeats = 300;
-ns = [100,200,300,400,500,600,700,800,900,1000];
+ns = [100];
 
 %% Experiment 1: Linear Regression with Homogeneous Error
 
@@ -25,4 +25,5 @@ multiple_experiments(dgp,ns,delta,num_repeats,bsize,alpha);
 %% Experiment 3: Simultaneous Equation Model
 
 dgp = "simeq";
+ns = [10,20,30,40,50,60,70,80,100];
 multiple_experiments(dgp,ns,delta,num_repeats,bsize,alpha);
