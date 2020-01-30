@@ -2,15 +2,17 @@ function multiple_experiments(dgp,ns,delta,num_repeats,bsize,alpha)
 %MULTIPLE_EXPERIMENTS Conduct experiments with varying sample sizes
 %   Detailed explanation goes here
 
-pwrs = [];
-errs = [];
+tests = ['kcm','icm','smooth','mtest'];
 
-for i=1:length(ns)
+pwrs = zeros(length(test),length(ns));
+errs = zeros(length(test),length(ns));
 
-    [pwr,err] = single_experiments(dgp,ns(i),delta,num_repeats,bsize,alpha);
-    pwrs = horzcat(pwrs,pwr);
-    errs = horzcat(errs,err);
-
+for i=1:length(tests)
+    for j=1:length(ns)
+        [pwr,err] = single_experiments(dgp,tests(i),ns(j),delta,num_repeats,bsize,alpha);
+        pwrs(i,j) = pwr;
+        errs(i,j) = err;
+    end
 end
 
 if strcmp(dgp,'linreg_hom')
