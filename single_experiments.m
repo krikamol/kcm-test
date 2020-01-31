@@ -27,7 +27,8 @@ for i=1:num_exps
     else
         cur_delta = delta(i);
     end
-        
+       
+    % generate the synthetic data
     [Z,X,gres] = generate_data(dgp,cur_delta,n);
     
     % estimate the parameters

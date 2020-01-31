@@ -1,9 +1,6 @@
-function multiple_experiments(dgp,ns,delta,num_repeats,bsize,alpha)
+function multiple_experiments(dgp,tests,ns,delta,num_repeats,bsize,alpha)
 %MULTIPLE_EXPERIMENTS Conduct experiments with varying sample sizes
 %   Detailed explanation goes here
-
-%tests = ['kcm','icm','smooth','mtest'];
-tests = {'kcm','smooth'};
 
 pwrs = zeros(length(tests),length(ns));
 errs = zeros(length(tests),length(ns));

@@ -23,7 +23,7 @@ if n ~= size(X.mat,1)
 end
 
 % calculate the bandwidth parameter h and evaluate the kernel k
-h = d*(n^(-0.2));
+h = 2*(n^(-0.2));
 D = squaredist(X.mat', X.mat');
 K = exp(-D./h);
 
@@ -36,7 +36,8 @@ Ht2 = Ht.*Ht;
 Hu2 = Ht2 - diag(diag(Ht2));
 
 % calculate the smooth test statistic
-tn = sum(sum(Hu))/(n*(n-1)*(h^d));
+vn = 2.*sum(sum(Hu2))/(n*(n-1)*(h^d));
+tn = n*(h^(d/2))*sum(sum(Hu))/(n*(n-1)*(h^d)*sqrt(vn));
 
 % approximate critical values via bootstrapping 
 bvals = zeros(1,bsize);
