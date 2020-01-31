@@ -5,12 +5,10 @@ function multiple_experiments(dgp,tests,ns,delta,num_repeats,bsize,alpha)
 pwrs = zeros(length(tests),length(ns));
 errs = zeros(length(tests),length(ns));
 
-for i=1:length(tests)
-    for j=1:length(ns)
-        [pwr,err] = single_experiments(dgp,char(tests(i)),ns(j),delta,num_repeats,bsize,alpha);
-        pwrs(i,j) = pwr;
-        errs(i,j) = err;
-    end
+for i=1:length(ns)
+    [pwr,err] = single_experiments(dgp,tests,ns(i),delta,num_repeats,bsize,alpha);
+    pwrs(:,i) = pwr;
+    errs(:,i) = err;
 end
 
 if strcmp(dgp,'linreg_hom')

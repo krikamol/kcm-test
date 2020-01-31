@@ -23,7 +23,7 @@ if n ~= size(X.mat,1)
 end
 
 % calculate the bandwidth parameter h and evaluate the kernel k
-h = 2*(n^(-0.2));
+h = d*(n^(-1));
 D = squaredist(X.mat', X.mat');
 K = exp(-D./h);
 
