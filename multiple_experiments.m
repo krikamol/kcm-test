@@ -21,7 +21,7 @@ else
     error('KCM: The specified DGP is unavailable.');
 end
 
-legs = {'KCM','SMOOTH'};
+legs = {'KCM','SMOOTH','ICM'};
 generate_plot(pwrs,ns,"Sample Size ($n$)","Test Power ($1-\beta$)",plot_title,legs,strcat(dgp,'_test_power.eps'));
 generate_plot(errs,ns,"Sample Size ($n$)","Type-I Error",plot_title,legs,strcat(dgp,'_type1_error.eps'));
 

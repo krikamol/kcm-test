@@ -1,4 +1,4 @@
-function [dec,tn,p,bvals] = smoothtest( Z,X,gres,theta,bsize,alpha)
+function [dec,tn,p,bvals] = smoothtest(Z,X,gres,theta,bsize,alpha)
 %SMOOTHTEST: The smooth test with kernel nonparametric estimator.
 %   
 %   INPUT:  Z - vector of observations
@@ -23,7 +23,7 @@ if n ~= size(X.mat,1)
 end
 
 % calculate the bandwidth parameter h and evaluate the kernel k
-h = d*(n^(-1));
+h = n^(-0.2);
 D = squaredist(X.mat', X.mat');
 K = exp(-D./h);
 

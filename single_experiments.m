@@ -50,6 +50,8 @@ for i=1:num_exps
             decs(t,i) = h;
         elseif strcmp(tests(t),'icm')
             % integrated conditional moment (ICM) test
+            [h,~,~,~] = icmtest(Z,X,gres,theta,bsize,alpha);
+            decs(t,i) = h;
         elseif strcmp(tests(t),'smooth')
             % smooth test
             [h,~,~,~] = smoothtest(Z,X,gres,theta,bsize,alpha);
