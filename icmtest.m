@@ -16,18 +16,14 @@ function [dec,cn,p,bvals] = icmtest( Z,X,gres,theta,bsize,alpha)
 
 % check the compatibility of data dimensions
 n = size(Z.mat,1);
-d = size(X.mat,2);
 if n ~= size(X.mat,1)
     % exit with an error message
     error("KCM: Z and X must have the same number of rows.");
 end
 
-% define the indicator function
-indfun = @(x,y) prod(x <= y);
-
 % evaluate the generalized residuals and the kernel h_theta
 G = gres(Z,theta);
-Rn = @(x) sum(G(bsxfun(@indfun,X.mat,x),:),1)/n; 
+Rn = @(x) sum(G(logical(prod(bsxfun(@le,X.mat,x),2)),:),1)/n; 
 
 % calculate the ICM test statistic
 cn = 0;
