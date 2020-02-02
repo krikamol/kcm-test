@@ -1,4 +1,4 @@
-function [pwrs,errs] = single_experiments(dgp,tests,n,delta,num_exps,bsize,alpha)
+function [pwrs,errs] = single_experiments(dgp,tests,n,d,delta,num_exps,bsize,alpha)
 %SINGLE_EXPERIMENTS Conduct repeated experiments for one parameter
 %setting.
 %
@@ -6,6 +6,7 @@ function [pwrs,errs] = single_experiments(dgp,tests,n,delta,num_exps,bsize,alpha
 %       dgp - the data generating process
 %       tests - the test statistics: 'kcm','icm','smooth','mtest'
 %       n - sample size
+%       d - dimensionality of X
 %       delta - the parameter controlling the deviation from the null
 %       num_exps - the number of repeated experiments
 %       bsize - the size of bootstrap sample
@@ -36,7 +37,7 @@ for i=1:num_exps
     true_decs(i) = cur_delta > 0;
     
     % generate the synthetic data
-    [Z,X,gres] = generate_data(dgp,cur_delta,n);
+    [Z,X,gres] = generate_data(dgp,cur_delta,n,d);
     
     % estimate the parameters
     theta = estimate_parameters(dgp,Z);

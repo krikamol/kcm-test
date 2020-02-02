@@ -7,7 +7,7 @@ function [ gvec ] = gres_linear(Z,theta)
 y = Z.y;
 x = Z.x;
 
-gvec = y - theta(1) - theta(2).*x;
+gvec = y - theta(1) - x*theta(2:end)';
 
 end
 

@@ -8,26 +8,28 @@ addpath('../utils/');
 dgp = "linreg_hom";
 alpha = 0.05;
 bsize = 1000;
-n = 200;
+n = 500;
+d = 10;
 delta = 0;
-theta = [1.0,2.0];
+theta = ones([1,d+1]);
 
-[Z,X,gres] = generate_data(dgp,delta,n);
-z = [Z.y, Z.x];
-x = X.x;
-[~,~,~,bvals] = kcm(z,x,gres,theta,@gaussrbf,bsize,alpha);
+[Z,X,gres] = generate_data(dgp,delta,n,d);
+%theta = estimate_parameters(dgp,Z);
+[~,~,~,bvals] = kcm(Z,X,gres,theta,@gaussrbf,bsize,alpha);
 
 mhs = zeros(1,bsize);
 for i=1:bsize
-    [Z,X,gres] = generate_data(dgp,delta,n);
+    [Z,X,gres] = generate_data(dgp,delta,n,d);
     z = [Z.y, Z.x];
     x = X.x;
-
+    
+    %theta = estimate_parameters(dgp,Z);
+    
     sx = sqrt(median_inter(x));
     K = gaussrbf(x,x,sx);
 
     % evaluate the generalized residuals and the kernel h_theta
-    G = gres(z,theta);
+    G = gres(Z,theta);
     Ht = (G*G').*K;
     Hu = Ht - diag(diag(Ht));
 

@@ -8,8 +8,8 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     y = Z.y;
     x = Z.x;
     
-    p = polyfit(x,y,1);
-    theta = [p(2), p(1)];
+    p = fitlm(x,y);
+    theta = p.Coefficients.Estimate';
     
 elseif strcmp(dgp,'simeq')
     
