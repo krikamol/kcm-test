@@ -37,7 +37,8 @@ end
 % approximate critical values via bootstrapping 
 q = size(G,2);
 dG = grad(Z,theta);
-Rsni = @(x,lz) G(logical(prod(bsxfun(@le,X.mat,x),2)),:) + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)/n)*lz;
+L = lfun(Z,theta);
+Rsni = @(x,Li) G(logical(prod(bsxfun(@le,X.mat,x),2)),:) + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)/n)*Li;
 
 bvals = zeros(1,bsize);
 for b=1:bsize
