@@ -8,8 +8,8 @@ addpath('../utils/');
 dgp = "linreg_hom";
 alpha = 0.05;
 bsize = 1000;
-n = 500;
-d = 10;
+n = 1000;
+d = 1;
 delta = 0;
 theta = ones([1,d+1]);
 

@@ -35,11 +35,20 @@ for i=1:n
 end
 
 % approximate critical values via bootstrapping 
-q = size(G,2);
+q  = size(G,2);
 dG = grad(Z,theta);
-L = lfun(Z,theta);
-Rsni = @(gi,xi,x,Li) prod(bsxfun(@le,xi,x),2).*gi + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)./n)*Li';
+L  = lfun(Z,theta);
 
+% xxx
+Rsni = @(gi,xi,x,Li) prod(bsxfun(@le,xi,x),2).*gi + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)./n)*Li';
+RR = zeros(n,n,q);
+for i=1:n
+    for j=1:n
+        RR(i,j,:) = Rsni(G(i,:),X.mat(i,:),X.mat(j,:),L(i,:,:));
+    end
+end
+
+% xxx
 bvals = zeros(1,bsize);
 for b=1:bsize
     
@@ -49,7 +58,7 @@ for b=1:bsize
     % calculate bootstrap test statistic
     Rns = zeros(n,q);
     for i=1:n
-        Rns(i,:) = Rns(i,:) + Rsni(G(i,:),X.mat(i,:),X.mat(i,:),L(i,:,:)).*w(i);
+        Rns(i,:) = sum(RR(i,:,:).*repmat(w(i),[1,q]),2)./n; % careful about the sum dimension
     end
     Rns = Rns./n;
     
