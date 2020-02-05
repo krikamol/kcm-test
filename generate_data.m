@@ -19,7 +19,7 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     
     Xs = normrnd(0,1,[n,d]);
     
-    err = normrnd(0,0.1,[n,1]); % homoskedastic noise
+    err = normrnd(0,0.05,[n,1]); % homoskedastic noise
     if strcmp(dgp,'linreg_het')
         err = err.*sqrt(0.1 + 0.1.*(vecnorm(Xs,2,2).^2)); % heteroskedastic noise
     end

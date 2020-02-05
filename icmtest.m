@@ -1,9 +1,11 @@
-function [dec,cn,p,bvals] = icmtest( Z,X,gres,theta,bsize,alpha)
+function [dec,cn,p,bvals] = icmtest( Z,X,gres,grad,lfun,theta,bsize,alpha)
 %ICMTEST: The integrated conditional moment (ICM) test.
 %   
 %   INPUT:  Z - vector of observations
 %           X - subvector of Z
 %           gres - vector-valued generalized residual function handle
+%           grad - gradient of generalized residual function
+%           lfun - auxiliary loss function
 %           theta - parameter value for gres function
 %           bsize - bootstrap sample size
 %           alpha - significance level
@@ -28,15 +30,34 @@ Rn = @(x) sum(G(logical(prod(bsxfun(@le,X.mat,x),2)),:),1)/n;
 % calculate the ICM test statistic
 cn = 0;
 for i=1:n
-    cn = cn + Rn(X.mat(i,:))'*Rn(X.mat(i,:));
+    Rvec = Rn(X.mat(i,:));
+    cn = cn + Rvec'*Rvec;
 end
 
 % approximate critical values via bootstrapping 
+q = size(G,2);
+dG = grad(Z,theta);
+Rsni = @(x,lz) G(logical(prod(bsxfun(@le,X.mat,x),2)),:) + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)/n)*lz;
+
 bvals = zeros(1,bsize);
 for b=1:bsize
     
+    % draw samples from standard normnal
+    w = normrnd(0,1,[n,1]);
+    
     % calculate bootstrap test statistic
-    % bvals(b) = ?
+    Rns = zeros(n,q);
+    for i=1:n
+        Rns(i,:) = Rns(i,:) + (Rsni(X.mat(i,:),lfun(Z.mat(i,:),theta))*w(i));
+    end
+    Rns = Rns./n;
+    
+    cns = 0;
+    for i=1:n
+        cns = cns + Rns(i,:)*Rns(i,:)';
+    end
+
+    bvals(b) = cns;
     
 end
 
