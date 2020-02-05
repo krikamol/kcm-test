@@ -38,18 +38,18 @@ end
 q = size(G,2);
 dG = grad(Z,theta);
 L = lfun(Z,theta);
-Rsni = @(x,Li) G(logical(prod(bsxfun(@le,X.mat,x),2)),:) + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)/n)*Li;
+Rsni = @(gi,xi,x,Li) prod(bsxfun(@le,xi,x),2).*gi + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)./n)*Li';
 
 bvals = zeros(1,bsize);
 for b=1:bsize
     
     % draw samples from standard normnal
     w = normrnd(0,1,[n,1]);
-    
+        
     % calculate bootstrap test statistic
     Rns = zeros(n,q);
     for i=1:n
-        Rns(i,:) = Rns(i,:) + (Rsni(X.mat(i,:),lfun(Z.mat(i,:),theta))*w(i));
+        Rns(i,:) = Rns(i,:) + Rsni(G(i,:),X.mat(i,:),X.mat(i,:),L(i,:,:)).*w(i);
     end
     Rns = Rns./n;
     
