@@ -23,5 +23,5 @@ end
     
 D = zeros(n,m) ;
 for d = 1:dx
-    D = D + (repmat(z(d,:),n,1) - repmat(x(d,:)',1,m)).^2./(s(d).^2);
+    D = D + ((repmat(z(d,:),n,1) - repmat(x(d,:)',1,m)).^2)./(s(d).^2);
 end

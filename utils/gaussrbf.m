@@ -8,7 +8,7 @@ else
     sig = varargin{1};
 end
 
-D = squaredist(X', Xt', sig);
+D = squaredist(X',Xt',sig);
 K = exp(-0.5.*D);
 
 end

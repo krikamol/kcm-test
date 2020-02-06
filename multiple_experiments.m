@@ -24,7 +24,7 @@ if length(ns) > 1 && length(delta) == 1
         errs(:,i) = err;
     end
     
-    legs = {'KCM','ICM','SMOOTH'};
+    legs = {'KCM','SMOOTH'};
     generate_plot(pwrs,ns,"Sample Size ($n$)","Test Power ($1-\beta$)",plot_title,legs,strcat(dgp,'_samplesize_test_power.eps'));
     generate_plot(errs,ns,"Sample Size ($n$)","Type-I Error",plot_title,legs,strcat(dgp,'_samplesize_type1_error.eps'));
 
@@ -39,7 +39,7 @@ elseif length(ns) == 1 && length(delta) > 1
         errs(:,i) = err;
     end
 
-    legs = {'KCM','ICM','SMOOTH'};
+    legs = {'KCM','SMOOTH'};
     generate_plot(pwrs,delta,"$\delta$","Test Power ($1-\beta$)",plot_title,legs,strcat(dgp,'_delta_test_power.eps'));
     generate_plot(errs,delta,"$\delta$","Type-I Error",plot_title,legs,strcat(dgp,'_delta_type1_error.eps'));
     

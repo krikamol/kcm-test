@@ -9,7 +9,8 @@ function [ mdx ] = median_inter(X)
 %dist = reshape(dist,[],1);
 %mdx = median(dist);
 
-mdx = median(squareform(squaredist(X')));
+dists = squareform(squaredist(X'));
+mdx = median(dists(dists > 0));
 
 end
 
