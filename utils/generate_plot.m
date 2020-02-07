@@ -1,4 +1,4 @@
-function generate_plot(ys,xv,xl,yl,pltitle,legs,outfile)
+function generate_plot(ys,xv,xl,yl,yll,pltitle,legs,outfile)
 %GENERATE_PLOT produces beautiful plot for the paper
 
 figure();
@@ -12,7 +12,7 @@ hold off;
 
 xlabel(xl,'FontSize',18,'Interpreter','latex');
 ylabel(yl,'FontSize',18,'Interpreter','latex');
-ylim([0 1]);
+ylim(yll);
 title(pltitle,'FontSize',20,'Interpreter','latex');
 legend(legs);
 

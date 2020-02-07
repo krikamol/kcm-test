@@ -8,8 +8,8 @@ addpath('../utils/');
 dgp = "linreg_hom";
 alpha = 0.05;
 bsize = 1000;
-n = 1000;
-d = 1;
+n = 500;
+d = 2;
 delta = 0;
 theta = ones([1,d+1]);
 
@@ -25,8 +25,8 @@ for i=1:bsize
     
     %theta = estimate_parameters(dgp,Z);
     
-    sx = sqrt(median_inter(x));
-    K = gaussrbf(x,x,sx);
+    sig = sqrt(0.5*median_inter(X.mat));
+    K = gaussrbf(x,x,sig);
 
     % evaluate the generalized residuals and the kernel h_theta
     G = gres(Z,theta);
@@ -38,7 +38,6 @@ for i=1:bsize
 end
 
 % plot the histograms
-h1 = histogram(bvals);
-hold on
-h2 = histogram(mhs);
+h1 = histogram(bvals,'Normalization','probability'); hold on
+h2 = histogram(mhs,'Normalization','probability');
 

@@ -1,17 +1,20 @@
 %% run experiments with varying sample sizes 
 %
-addpath('./utils')  
+addpath('./utils')
 
 %% Initialize parameters
+
+% debug mode
+% profile on;
 
 rng(9) % For reproducibility
 
 dim = 5;
 alpha = 0.05;
 delta = 0.05;
-bsize = 500;
+bsize = 1000;
 num_repeats = 300;
-ns = [20,50,100,200,500];
+ns = [20,50,100,200,500,1000];
 
 tests = {'kcm','smooth'};
 

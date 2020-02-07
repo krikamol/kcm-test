@@ -23,8 +23,8 @@ if n ~= size(X.mat,1)
 end
 
 % calculate the median distance of X and evaluate the kernel k
-sx = sqrt(median_inter(X.mat));
-K = kern(X.mat,X.mat,sx);
+sig = sqrt(0.5*median_inter(X.mat));
+K = kern(X.mat,X.mat,sig);
 
 % evaluate the generalized residuals and the kernel h_theta
 G = gres(Z,theta);
