@@ -11,9 +11,9 @@ rng(9) % For reproducibility
 
 dim = 5;
 alpha = 0.05;
-delta = 0.05;
+delta = 0;
 bsize = 1000;
-num_repeats = 300;
+num_repeats = 1000;
 ns = [20,50,100,200,500,1000];
 
 tests = {'kcm','smooth'};
