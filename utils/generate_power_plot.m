@@ -1,4 +1,4 @@
-function generate_plot(ys,xv,xl,yl,yll,pltitle,legs,outfile)
+function generate_power_plot(ys,xv,xl,yl,yll,pltitle,legs,outfile)
 %GENERATE_PLOT produces beautiful plot for the paper
 
 figure();

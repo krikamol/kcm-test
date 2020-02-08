@@ -39,10 +39,11 @@ bvals = zeros(1,bsize);
 for b=1:bsize
     
     % draw multinomial random samples
-    w = mnrnd(n,ones(1,n)/n)/n; 
+    w = mnrnd(n,ones(1,n)/n)/n - 1/n; 
     
     % calculate bootstrap test statistic
-    bvals(b) = (w-1/n)*Hu*(w'-1/n);
+    bvals(b) = w*Hu*w';
+
 end
 
 % calculate the p-value using bootstrap statistics

@@ -9,7 +9,7 @@ dgp = "linreg_hom";
 alpha = 0.05;
 bsize = 1000;
 n = 500;
-d = 2;
+d = 3;
 delta = 0;
 theta = ones([1,d+1]);
 
