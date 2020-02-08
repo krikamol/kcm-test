@@ -25,50 +25,49 @@ end
 
 % evaluate the generalized residuals and the kernel h_theta
 G = gres(Z,theta);
-Rn = @(x) sum(G(logical(prod(bsxfun(@le,X.mat,x),2)),:),1)/n; 
+I = zeros(n,n);
+for i=1:n
+    I(:,i) = prod(bsxfun(@le,X.mat,X.mat(i,:)),2);
+end    
 
 % calculate the ICM test statistic
-cn = 0;
-for i=1:n
-    Rvec = Rn(X.mat(i,:));
-    cn = cn + Rvec'*Rvec;
-end
+Rn = (I'*G)./n;
+Rn2 = Rn.^2;
+cn = sum(sum(Rn2,2));
 
 % approximate critical values via bootstrapping 
 q  = size(G,2);
 dG = grad(Z,theta);
 L  = lfun(Z,theta);
 
-% xxx
-Rsni = @(gi,xi,x,Li) prod(bsxfun(@le,xi,x),2).*gi + (sum(dG(logical(prod(bsxfun(@le,X.mat,x),2)),:,:),1)./n)*Li';
-RR = zeros(n,n,q);
+dGI = (I'*dG)./n;
+
+ri = zeros(n,n,q);
 for i=1:n
     for j=1:n
-        RR(i,j,:) = Rsni(G(i,:),X.mat(i,:),X.mat(j,:),L(i,:,:));
+        if prod(X.mat(i,:) <= X.mat(j,:))
+            ri(i,j,:) = G(i,:) + dGI(j,:)*L(i,:,:)';
+        else
+            ri(i,j,:) = dGI(j,:)*L(i,:,:)';
+        end
     end
 end
 
-% xxx
 bvals = zeros(1,bsize);
 for b=1:bsize
     
     % draw samples from standard normnal
     w = normrnd(0,1,[n,1]);
-        
+
     % calculate bootstrap test statistic
     Rns = zeros(n,q);
-    for i=1:n
-        Rns(i,:) = sum(RR(i,:,:).*repmat(w(i),[1,q]),2)./n; % careful about the sum dimension
+    for j=1:n
+        Rns(j,:) = sum(ri(:,j,:).*repmat(w,1,q),1)./n; % careful about the sum dimension
     end
-    Rns = Rns./n;
     
-    cns = 0;
-    for i=1:n
-        cns = cns + Rns(i,:)*Rns(i,:)';
-    end
+    Rns2 = Rns.^2;
+    bvals(b) = sum(sum(Rns2,2));
 
-    bvals(b) = cns;
-    
 end
 
 % calculate the p-value using bootstrap statistics

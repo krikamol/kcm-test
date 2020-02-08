@@ -6,11 +6,11 @@ set(gcf,'Visible','on');
 
 ls = ["-ok","--*r",":xb","-.^m"];
 for i=1:size(ys,1)
-    plot(xv,ys(i,:),char(ls(i)),'LineWidth',3); hold on;
+    plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',4); hold on;
 end
 hold off;
 
-yline(alpha,'--','alpha','LineWidth',3);
+yline(alpha,'--','alpha','LineWidth',4);
 xlabel(xl,'FontSize',18,'Interpreter','latex');
 ylabel(yl,'FontSize',18,'Interpreter','latex');
 ylim(yll);

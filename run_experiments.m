@@ -9,14 +9,14 @@ addpath('./utils')
 
 rng(9) % For reproducibility
 
-dim = 10;
+dim = 5;
 alpha = 0.05;
-delta = 0;
+delta = 0.05;
 bsize = 1000;
-num_trials = 500;
+num_trials = 200;
 ns = [20,50,100,200,500];
 
-tests = {'kcm','smooth'};
+tests = {'kcm','icm','smooth'};
 
 %% Experiment 1: Linear Regression with Homogeneous Error
 
