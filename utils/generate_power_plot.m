@@ -6,15 +6,23 @@ set(gcf,'Visible','on');
 
 ls = ["-ok","--*r",":xb","-.^m"];
 for i=1:size(ys,1)
-    plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',4); hold on;
+    plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',14); hold on;
 end
 hold off;
 
-xlabel(xl,'FontSize',18,'Interpreter','latex');
-ylabel(yl,'FontSize',18,'Interpreter','latex');
+xlabel(xl,'FontSize',28,'Interpreter','latex');
+ylabel(yl,'FontSize',28,'Interpreter','latex');
 ylim(yll);
+
+xtl = get(gca,'XTickLabel');
+set(gca,'XTickLabel',xtl,'fontsize',20)
+
+ytl = get(gca,'YTickLabel');
+set(gca,'YTickLabel',ytl,'fontsize',20)
+
 title(pltitle,'FontSize',20,'Interpreter','latex');
-legend(legs);
+legend(legs,'Location','southeast','FontSize',24);
+axis tight;
 
 saveas(gcf,char(outfile),'epsc');
 
