@@ -5,20 +5,25 @@ function [ theta ] = estimate_parameters(dgp,Z)
 if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
 
     % fit linear regression
-    y = Z.y;
-    x = Z.x;
+    %y = Z.y;
+    %x = Z.x;
     
-    p = fitlm(x,y);
-    theta = p.Coefficients.Estimate';
+    %p = fitlm(x,y);
+    %theta = p.Coefficients.Estimate';
+    
+    % output the true parameters
+    d = size(Z.x,2);
+    theta = ones([1,d+1]);
     
 elseif strcmp(dgp,'simeq')
     
     % two-stage least square
-    theta = [-1,1,1,1];
-    
     %Pz = z.'*((z*z.')\z);
     %A = ((x*Pz*x.')\x)*Pz;
     %theta = A'*y;
+    
+    % output the true parameters
+    theta = [-1,1,1,1];
     
 else
     % no specified dgp 

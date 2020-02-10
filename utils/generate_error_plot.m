@@ -10,7 +10,7 @@ for i=1:size(ys,1)
 end
 hold off;
 
-yline(alpha,'--','alpha','LineWidth',4);
+yline(alpha,':','alpha','LineWidth',4);
 xlabel(xl,'FontSize',18,'Interpreter','latex');
 ylabel(yl,'FontSize',18,'Interpreter','latex');
 ylim(yll);
