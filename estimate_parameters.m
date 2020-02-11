@@ -11,7 +11,7 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     %p = fitlm(x,y);
     %theta = p.Coefficients.Estimate';
     
-    % output the true parameters
+    % output the true parameters with a small perturbation
     d = size(Z.x,2);
     theta = ones([1,d+1]);
     
@@ -22,7 +22,7 @@ elseif strcmp(dgp,'simeq')
     %A = ((x*Pz*x.')\x)*Pz;
     %theta = A'*y;
     
-    % output the true parameters
+    % output the true parameters with a small perturbation
     theta = [-1,1,1,1];
     
 else

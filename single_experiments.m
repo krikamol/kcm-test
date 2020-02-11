@@ -52,7 +52,8 @@ for i=1:num_exps
         elseif strcmp(tests(t),'icm')
             % integrated conditional moment (ICM) test
             if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
-                [h,~,~,~] = icmtest(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
+                %[h,~,~,~] = icmtest(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
+                [h,~,~,~] = icmtest_simple(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
             elseif strcmp(dgp,'simeq')
                 % TODO
             end
