@@ -9,10 +9,10 @@ addpath('./utils')
 
 rng(9) % For reproducibility
 
-dim = 5;
+dim = 6;
 alpha = 0.05;
-delta = 0.05;
-bsize = 1000;
+delta = 0;
+bsize = 500;
 num_trials = 300;
 ns = [20,50,100,200,500,1000];
 

@@ -1,4 +1,4 @@
-function [ theta ] = estimate_parameters(dgp,Z)
+function [ theta ] = estimate_parameters(dgp,Z,delta)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -13,7 +13,7 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     
     % output the true parameters with a small perturbation
     d = size(Z.x,2);
-    theta = ones([1,d+1]);
+    theta = ones([1,d+1]) + delta.*normrnd(0,1,[1,d+1]);
     
 elseif strcmp(dgp,'simeq')
     
@@ -23,7 +23,7 @@ elseif strcmp(dgp,'simeq')
     %theta = A'*y;
     
     % output the true parameters with a small perturbation
-    theta = [-1,1,1,1];
+    theta = [-1,1,1,1] + delta.*normrnd(0,1,[1,4]);
     
 else
     % no specified dgp 

@@ -24,7 +24,8 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
         err = err.*sqrt(0.1 + 0.1.*(vecnorm(Xs,2,2).^2)); % heteroskedastic noise
     end
     
-    Y = theta(1) + Xs*theta(2:end)' + delta.*inv_mill_ratio((theta(1) + Xs*theta(2:end)')) + err;
+    %Y = theta(1) + Xs*theta(2:end)' + delta.*inv_mill_ratio((theta(1) + Xs*theta(2:end)')) + err;
+    Y = theta(1) + Xs*theta(2:end)' + err;
     
     Z = struct('y',Y,'x',Xs);
     X = struct('x',Xs); 

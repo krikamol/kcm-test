@@ -22,7 +22,7 @@ set(gca,'YTickLabel',ytl,'fontsize',20)
 
 title(pltitle,'FontSize',20,'Interpreter','latex');
 legend(legs,'Location','southeast','FontSize',24);
-axis tight;
+axis square;
 
 saveas(gcf,char(outfile),'epsc');
 

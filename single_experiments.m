@@ -40,7 +40,7 @@ for i=1:num_exps
     [Z,X,gres] = generate_data(dgp,cur_delta,n,d);
     
     % estimate the parameters
-    theta = estimate_parameters(dgp,Z);
+    theta = estimate_parameters(dgp,Z,cur_delta);
 
     for t=1:n_tests
         
