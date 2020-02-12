@@ -37,10 +37,10 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     
 elseif strcmp(dgp,'simeq')
     %
-    L11 = -1;
-    L12 = 1;
-    L21 = 1;
-    L22 = 1;
+    L11 = -0.5;
+    L12 = 0.5;
+    L21 = 0.5;
+    L22 = 0.5;
     
     %
     V = mvnrnd([0,0],[1,1/sqrt(2);1/sqrt(2),1],n);
@@ -48,7 +48,8 @@ elseif strcmp(dgp,'simeq')
     W = normrnd(0,1,[n,1]);
     
     Q = L11.*R + L12.*W + V(:,1);
-    P = L21.*R + L22.*W + (delta/2.0).*(W.*W) + V(:,2);
+    %P = L21.*R + L22.*W + (delta/2.0).*(W.*W) + V(:,2);
+    P = L21.*R + L22.*W + V(:,2);
     
     Z = struct('q',Q,'p',P,'r',R,'w',W);
     X = struct('r',R,'w',W);

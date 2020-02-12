@@ -23,7 +23,7 @@ elseif strcmp(dgp,'simeq')
     %theta = A'*y;
     
     % output the true parameters with a small perturbation
-    theta = [-1,1,1,1] + delta.*normrnd(0,1,[1,4]);
+    theta = [-0.5,0.5,0.5,0.5] + delta.*normrnd(0,1,[1,4]);
     
 else
     % no specified dgp 

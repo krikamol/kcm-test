@@ -14,11 +14,9 @@ xlabel(xl,'FontSize',28,'Interpreter','latex');
 ylabel(yl,'FontSize',28,'Interpreter','latex');
 ylim(yll);
 
-xtl = get(gca,'XTickLabel');
-set(gca,'XTickLabel',xtl,'fontsize',20)
-
-ytl = get(gca,'YTickLabel');
-set(gca,'YTickLabel',ytl,'fontsize',20)
+ax = gca;
+ax.YAxis.FontSize = 20;
+ax.XAxis.FontSize = 20;
 
 title(pltitle,'FontSize',20,'Interpreter','latex');
 legend(legs,'Location','southeast','FontSize',24);
