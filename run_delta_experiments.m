@@ -11,7 +11,7 @@ alpha = 0.05;
 delta = [0.0001,0.001,0.01,0.05,0.1];
 bsize = 1000;
 num_repeats = 300;
-ns = 50;
+ns = 100;
 
 tests = {'kcm','icm','smooth'};
 

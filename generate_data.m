@@ -37,10 +37,10 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     
 elseif strcmp(dgp,'simeq')
     %
-    L11 = -0.5;
-    L12 = 0.5;
-    L21 = 0.5;
-    L22 = 0.5;
+    L11 = -0.1;
+    L12 = 0.1;
+    L21 = 0.1;
+    L22 = 0.1;
     
     %
     V = mvnrnd([0,0],[1,1/sqrt(2);1/sqrt(2),1],n);

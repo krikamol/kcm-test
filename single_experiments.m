@@ -55,7 +55,7 @@ for i=1:num_exps
                 %[h,~,~,~] = icmtest(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
                 [h,~,~,~] = icmtest_simple(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
             elseif strcmp(dgp,'simeq')
-                % TODO
+                [h,~,~,~] = icmtest_simple(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
             end
             decs(t,i) = h;
         elseif strcmp(tests(t),'smooth')
