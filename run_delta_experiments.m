@@ -4,7 +4,7 @@ addpath('./utils')
 
 %% Initialize parameters
 
-rng(9) % For reproducibility
+rng(99) % For reproducibility
 
 dim = 5;
 alpha = 0.05;

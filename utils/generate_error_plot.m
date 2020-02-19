@@ -6,16 +6,22 @@ set(gcf,'Visible','on');
 
 ls = ["-ok","--*r",":xb","-.^m"];
 for i=1:size(ys,1)
-    plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',4); hold on;
+    plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',14); hold on;
 end
 hold off;
 
-yline(alpha,':','alpha','LineWidth',4);
-xlabel(xl,'FontSize',18,'Interpreter','latex');
-ylabel(yl,'FontSize',18,'Interpreter','latex');
+yline(alpha,':','$\alpha$','LineWidth',4,'Interpreter','latex');
+xlabel(xl,'FontSize',28,'Interpreter','latex');
+ylabel(yl,'FontSize',28,'Interpreter','latex');
 ylim(yll);
+
+ax = gca;
+ax.YAxis.FontSize = 20;
+ax.XAxis.FontSize = 20;
+
 title(pltitle,'FontSize',20,'Interpreter','latex');
-legend(legs);
+legend(legs,'FontSize',24);
+axis square;
 
 saveas(gcf,char(outfile),'epsc');
 
