@@ -1,4 +1,4 @@
-%% run experiments with varying sample sizes 
+%% run experiments with varying dimensions 
 %
 addpath('./utils')
 
@@ -9,12 +9,12 @@ addpath('./utils')
 
 rng(9) % For reproducibility
 
-dim = 5;
+dim = [1,2,3,4,5];
 alpha = 0.05;
-delta = 0.0;
+delta = 0.01;
 bsize = 1000;
-num_trials = 2000;
-ns = [100,200,400,600,800,1000];
+num_trials = 300;
+ns = 500;
 
 tests = {'kcm','icm','smooth'};
 
