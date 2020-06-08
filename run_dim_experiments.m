@@ -1,8 +1,11 @@
-%% experiments with varying dimensionality
+%% run experiments with varying dimensions 
 %
-addpath('./utils')  
+addpath('./utils')
 
 %% Initialize parameters
+
+% debug mode
+% profile on;
 
 rng(9) % For reproducibility
 
@@ -13,7 +16,7 @@ bsize = 500;
 num_repeats = 200;
 ns = 100;
 
-tests = {'kcm','smooth'};
+tests = {'kcm','icm','smooth'};
 
 %% Experiment 1: Linear Regression with Homogeneous Error
 

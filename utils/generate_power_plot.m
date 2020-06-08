@@ -4,9 +4,13 @@ function generate_power_plot(ys,xv,xl,yl,yll,pltitle,legs,outfile)
 figure();
 set(gcf,'Visible','on');
 
+[~,fname,~] = fileparts(outfile);
+save(sprintf('%s.mat',fname),'ys','xv','xl','yl','yll','pltitle','legs','outfile');
+
 ls = ["-ok","--*r",":xb","-.^m"];
 for i=1:size(ys,1)
-    plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',14); hold on;
+    %plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',14); hold on;
+    semilogx(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',14); hold on;
 end
 hold off;
 

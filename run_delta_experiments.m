@@ -8,10 +8,10 @@ rng(99) % For reproducibility
 
 dim = 5;
 alpha = 0.05;
-delta = [0.0001,0.001,0.01,0.05,0.1];
+delta = 10.^[-3,-2.5,-2,-1.5,-1];
 bsize = 1000;
 num_repeats = 300;
-ns = 100;
+ns = 500;
 
 tests = {'kcm','icm','smooth'};
 

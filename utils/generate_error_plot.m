@@ -4,6 +4,9 @@ function generate_error_plot(ys,xv,alpha,xl,yl,yll,pltitle,legs,outfile)
 figure();
 set(gcf,'Visible','on');
 
+[~,fname,~] = fileparts(outfile);
+save(sprintf('%s.mat',fname),'ys','xv','alpha','xl','yl','yll','pltitle','legs','outfile');
+
 ls = ["-ok","--*r",":xb","-.^m"];
 for i=1:size(ys,1)
     plot(xv,ys(i,:),char(ls(i)),'LineWidth',4,'MarkerSize',14); hold on;
