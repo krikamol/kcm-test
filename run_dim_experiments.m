@@ -9,12 +9,12 @@ addpath('./utils')
 
 rng(9) % For reproducibility
 
-dim = [1,2,3,4,5];
+dim = [1,2,3,4,5,6,7,8,9,10];
 alpha = 0.05;
 delta = 0.01;
 bsize = 1000;
 num_trials = 300;
-ns = 500;
+ns = 1000;
 
 tests = {'kcm','icm','smooth'};
 
