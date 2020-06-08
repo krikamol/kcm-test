@@ -1,6 +1,5 @@
 function multiple_experiments_on_cluster(dgp,tests,ns,dim,delta,num_repeats,bsize,alpha,outfile)
-%MULTIPLE_EXPERIMENTS Conduct experiments with varying sample sizes
-%   Detailed explanation goes here
+%MULTIPLE_EXPERIMENTS_ON_CLUSTER Conduct multiple experiments on the cluster
 
 % run with varying sample sizes
 if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
@@ -44,7 +43,7 @@ end
 
 
 % save the result
-result = [pwrs; errs];
-writematrix(result,outfile,'Delimiter','\t');
+results = {pwrs, errs};
+save(outfile,'results');
 
 end
