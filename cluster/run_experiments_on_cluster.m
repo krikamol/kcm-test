@@ -1,6 +1,7 @@
 function run_experiments_on_cluster(experiment_name,trial_no,dgp)
 
-addpath('./utils')
+addpath('../')
+addpath('../utils')
 
 % initialization
 
@@ -13,7 +14,7 @@ bsize = 1000;
 ns = [100,200,400,600,800,1000];
 tests = {'kcm','icm','smooth'};
 
-outfile = strcat(experiment_name,'_',trial_no,'.dat');
+outfile = strcat(dgp,'_',experiment_name,'_',trial_no,'.dat');
 
 % experiment
 multiple_experiments_on_cluster(dgp,tests,ns,dim,delta,1,bsize,alpha,outfile);
