@@ -30,8 +30,8 @@ if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
     pwrs = pwrs./num_trials;
     errs = errs./num_trials;
     
-    generate_power_plot(pwrs,ns,"Sample Size ($n$)","Test Power ($1-\beta$)",[0,1.1],plot_title,legs,strcat(dgp,'_samplesize_test_power.eps'));
-    generate_error_plot(errs,ns,alpha,"Sample Size ($n$)","Type-I Error",[0,0.5],plot_title,legs,strcat(dgp,'_samplesize_type1_error.eps'));
+    generate_power_plot(pwrs,ns,'Sample Size ($n$)','Test Power ($1-\beta$)',[0,1.1],plot_title,legs,strcat(dgp,'_samplesize_test_power.eps'));
+    generate_error_plot(errs,ns,alpha,'Sample Size ($n$)','Type-I Error',[0,0.5],plot_title,legs,strcat(dgp,'_samplesize_type1_error.eps'));
 
 elseif length(ns) == 1 && length(delta) > 1 && length(dim) == 1
     
@@ -48,8 +48,8 @@ elseif length(ns) == 1 && length(delta) > 1 && length(dim) == 1
     pwrs = pwrs./num_trials;
     errs = errs./num_trials;
 
-    generate_power_plot(pwrs,delta,"$\delta$","Test Power ($1-\beta$)",[0,1.1],plot_title,legs,strcat(dgp,'_delta_test_power.eps'));
-    generate_error_plot(errs,delta,alpha,"$\delta$","Type-I Error",[0,0.5],plot_title,legs,strcat(dgp,'_delta_type1_error.eps'));
+    generate_power_plot(pwrs,delta,'$\delta$','Test Power ($1-\beta$)',[0,1.1],plot_title,legs,strcat(dgp,'_delta_test_power.eps'));
+    generate_error_plot(errs,delta,alpha,'$\delta$','Type-I Error',[0,0.5],plot_title,legs,strcat(dgp,'_delta_type1_error.eps'));
 
 elseif length(ns) == 1 && length(delta) == 1 && length(dim) > 1
     
@@ -66,8 +66,8 @@ elseif length(ns) == 1 && length(delta) == 1 && length(dim) > 1
     pwrs = pwrs./num_trials;
     errs = errs./num_trials;
 
-    generate_power_plot(pwrs,dim,"Dimension of $X$","Test Power ($1-\beta$)",[0,1.1],plot_title,legs,strcat(dgp,'_dim_test_power.eps'));
-    generate_error_plot(errs,dim,alpha,"Dimension of $X$","Type-I Error",[0,0.5],plot_title,legs,strcat(dgp,'_dim_type1_error.eps'));
+    generate_power_plot(pwrs,dim,'Dimension of $X$','Test Power ($1-\beta$)',[0,1.1],plot_title,legs,strcat(dgp,'_dim_test_power.eps'));
+    generate_error_plot(errs,dim,alpha,'Dimension of $X$','Type-I Error',[0,0.5],plot_title,legs,strcat(dgp,'_dim_type1_error.eps'));
     
 else
     error('KCM: Invalid setting.');
