@@ -14,7 +14,7 @@ bsize = 1000;
 ns = [100,200,400,600,800,1000];
 tests = {'kcm','icm','smooth'};
 
-outfile = strcat('results/',dgp,'_',experiment_name,'_',trial_no,'.mat');
+outfile = strcat('results/',dgp,'_',experiment_name,'_',int2str(trial_no),'.mat');
 
 % experiment
 multiple_experiments_on_cluster(dgp,tests,ns,dim,delta,1,bsize,alpha,outfile);

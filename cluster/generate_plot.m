@@ -18,7 +18,7 @@ if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
     errs = zeros(length(tests),length(ns));
 
     for i=1:num_trials
-        infile = strcat('results/',dgp,'_',experiment_name,'_',trial_no,'.dat');
+        infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
         results = load(infile);
         pwrs = pwrs + results{1};
         errs = errs + results{2};
@@ -36,7 +36,7 @@ elseif length(ns) == 1 && length(delta) > 1 && length(dim) == 1
     errs = zeros(length(tests),length(delta));
 
     for i=1:num_trials
-        infile = strcat('results/',dgp,'_',experiment_name,'_',trial_no,'.dat');
+        infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
         results = load(infile);
         pwrs = pwrs + results{1};
         errs = errs + results{2};
@@ -54,7 +54,7 @@ elseif length(ns) == 1 && length(delta) == 1 && length(dim) > 1
     errs = zeros(length(tests),length(dim));
 
     for i=1:num_trials
-        infile = strcat('results/',dgp,'_',experiment_name,'_',trial_no,'.dat');
+        infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
         results = load(infile);
         pwrs = pwrs + results{1};
         errs = errs + results{2};
