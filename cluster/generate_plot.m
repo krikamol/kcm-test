@@ -23,9 +23,13 @@ if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
 
     for i=1:num_trials
         infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
-        load(infile);
-        pwrs = pwrs + results{1};
-        errs = errs + results{2};
+        try
+            load(infile,'-mat','results');
+            pwrs = pwrs + results{1};
+            errs = errs + results{2};
+        catch
+            disp(['Warning: cannot load ',infile]);
+        end
     end
     
     pwrs = pwrs./num_trials;
@@ -41,9 +45,13 @@ elseif length(ns) == 1 && length(delta) > 1 && length(dim) == 1
 
     for i=1:num_trials
         infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
-        load(infile);
-        pwrs = pwrs + results{1};
-        errs = errs + results{2};
+        try
+            load(infile,'-mat','results');
+            pwrs = pwrs + results{1};
+            errs = errs + results{2};
+        catch
+            disp(['Warning: cannot load ',infile]);
+        end
     end
     
     pwrs = pwrs./num_trials;
@@ -59,9 +67,13 @@ elseif length(ns) == 1 && length(delta) == 1 && length(dim) > 1
 
     for i=1:num_trials
         infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
-        load(infile);
-        pwrs = pwrs + results{1};
-        errs = errs + results{2};
+        try
+            load(infile,'-mat','results');
+            pwrs = pwrs + results{1};
+            errs = errs + results{2};
+        catch
+            disp(['Warning: cannot load ',infile]);
+        end
     end
     
     pwrs = pwrs./num_trials;
