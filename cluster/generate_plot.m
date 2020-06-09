@@ -1,5 +1,8 @@
 %% generate plots from results
 
+addpath('../')
+addpath('../utils')
+
 dgp = 'linreg_hom';
 experiment_name = 'samplesize';
 
