@@ -12,6 +12,7 @@ delta = 0.01;
 num_trials = 10;
 ns = [100,200,400,600,800,1000];
 
+tests = {'kcm','icm','smooth'};
 legs = {'KCM','ICM','SMOOTH'};
 
 %
