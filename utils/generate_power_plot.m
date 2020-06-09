@@ -17,6 +17,7 @@ hold off;
 xlabel(xl,'FontSize',28,'Interpreter','latex');
 ylabel(yl,'FontSize',28,'Interpreter','latex');
 ylim(yll);
+xlim([xv(1)-10,xv(end)]);
 
 ax = gca;
 ax.YAxis.FontSize = 20;
@@ -24,7 +25,7 @@ ax.XAxis.FontSize = 20;
 
 title(pltitle,'FontSize',20,'Interpreter','latex');
 legend(legs,'Location','southeast','FontSize',24);
-axis square;
+pbaspect([2 1 1]);
 
 saveas(gcf,char(outfile),'epsc');
 

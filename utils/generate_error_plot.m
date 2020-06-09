@@ -24,7 +24,7 @@ ax.XAxis.FontSize = 20;
 
 title(pltitle,'FontSize',20,'Interpreter','latex');
 legend(legs,'FontSize',24);
-axis square;
+pbaspect([2 1 1]);
 
 saveas(gcf,char(outfile),'epsc');
 
