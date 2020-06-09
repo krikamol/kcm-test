@@ -1,6 +1,9 @@
 function multiple_experiments_on_cluster(dgp,tests,ns,dim,delta,num_repeats,bsize,alpha,outfile)
 %MULTIPLE_EXPERIMENTS_ON_CLUSTER Conduct multiple experiments on the cluster
 
+pwrs = [];
+errs = [];
+
 % run with varying sample sizes
 if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
 
