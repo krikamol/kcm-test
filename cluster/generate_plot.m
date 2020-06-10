@@ -4,16 +4,31 @@ addpath('../')
 addpath('../utils')
 
 dgp = 'linreg_hom';
-experiment_name = 'samplesize';
+experiment_name = 'delta';
 
 dim = 5;
 alpha = 0.05;
-delta = 0.01;
 num_trials = 300;
-ns = [100,200,400,600,800,1000];
+
+if strcmp(experiment_name,'samplesize') 
+    dim = 5;
+    delta = 0.01;
+    ns = [100,200,400,600,800,1000];
+elseif strcmp(experiment_name,'delta')
+    dim = 5;
+    delta = [0.001, 0.005, 0.01, 0.05, 0.1, 0.15];
+    ns = 100;
+elseif strcmp(experiment_name,'error')
+    dim = 5;
+    alpha = 0.05;
+    delta = 0.0;
+    ns = [100,200,400,600,800,1000];
+end
 
 tests = {'kcm','icm','smooth'};
 legs = {'KCM','ICM','SMOOTH'};
+
+indir = strcat('results/',dgp,'/',experiment_name,'/');
 
 %
 counts = 0;
@@ -23,7 +38,7 @@ if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
     errs = zeros(length(tests),length(ns));
 
     for i=1:num_trials
-        infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
+        infile = strcat(indir,dgp,'_',experiment_name,'_',int2str(i),'.mat');
         try
             load(infile,'-mat','results');
             pwrs = pwrs + results{1};
@@ -46,7 +61,7 @@ elseif length(ns) == 1 && length(delta) > 1 && length(dim) == 1
     errs = zeros(length(tests),length(delta));
 
     for i=1:num_trials
-        infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
+        infile = strcat(indir,dgp,'_',experiment_name,'_',int2str(i),'.mat');
         try
             load(infile,'-mat','results');
             pwrs = pwrs + results{1};
@@ -69,7 +84,7 @@ elseif length(ns) == 1 && length(delta) == 1 && length(dim) > 1
     errs = zeros(length(tests),length(dim));
 
     for i=1:num_trials
-        infile = strcat('results/',dgp,'_',experiment_name,'_',int2str(i),'.mat');
+        infile = strcat(indir,dgp,'_',experiment_name,'_',int2str(i),'.mat');
         try
             load(infile,'-mat','results');
             pwrs = pwrs + results{1};

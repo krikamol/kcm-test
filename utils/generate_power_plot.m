@@ -17,7 +17,8 @@ hold off;
 xlabel(xl,'FontSize',28,'Interpreter','latex');
 ylabel(yl,'FontSize',28,'Interpreter','latex');
 ylim(yll);
-xlim([xv(1)-10,xv(end)]);
+%xlim([xv(1)-10,xv(end)]);
+grid on
 
 ax = gca;
 ax.YAxis.FontSize = 20;

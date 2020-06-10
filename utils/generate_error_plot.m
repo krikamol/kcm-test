@@ -17,6 +17,7 @@ yline(alpha,':','$\alpha$','LineWidth',4,'Interpreter','latex');
 xlabel(xl,'FontSize',28,'Interpreter','latex');
 ylabel(yl,'FontSize',28,'Interpreter','latex');
 ylim(yll);
+grid on
 
 ax = gca;
 ax.YAxis.FontSize = 20;
