@@ -27,8 +27,8 @@ elseif strcmp(dgp,'simeq')
     t2 = fitlm([ph,Z.w],Z.q).Coefficients.Estimate';
     
     % output the true parameters with a small perturbation
-    %theta = [1,-2,-1,2] + delta.*normrnd(0,1,[1,4]);
-    theta = [t1(2),t1(3),t2(2),t2(3)] + delta.*normrnd(0,1,[1,4]);
+    theta = [-1,2,1,-2] + delta.*normrnd(0,1,[1,4]);
+    %theta = [t1(2),t1(3),t2(2),t2(3)] + delta.*normrnd(0,1,[1,4]);
     
 else
     % no specified dgp 

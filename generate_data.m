@@ -37,13 +37,13 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     
 elseif strcmp(dgp,'simeq')
     %
-    L11 = -1;
-    L12 = 1;
+    L11 = 1;
+    L12 = -1;
     L21 = 1;
     L22 = 1;
     
     %
-    V = mvnrnd([0,0],[1,1/sqrt(2);1/sqrt(2),1],n);
+    V = mvnrnd([0,0],1e-3*[1,1/sqrt(2);1/sqrt(2),1],n);
     R = normrnd(0,1,[n,1]);
     W = normrnd(0,1,[n,1]);
     
