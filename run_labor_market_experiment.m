@@ -8,18 +8,20 @@ rng(99);
 alpha = 0.05;
 bsize = 1000;
 
-tests = {'kcm','icm','smooth'};
-
 % load and preprocess the data
 
 % Y: wage, Xs: dependent variables
-[Z,X,~] = generate_data('linreg_hom',0.01,200,5);
+[Z1,X1,~] = generate_data('linreg_hom',0.01,200,5);
 
 %Z = struct('y',Y,'x',Xs);
 %X = struct('x',Xs);
 
 %Z.mat = [Z.y,Z.x];
 %X.mat = [X.x];
+
+% estimate the parameters
+sol = fitlm(Z.x,Z.y);
+theta = sol.Coefficients.Estimate';
 
 % conduct the test
 
