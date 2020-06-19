@@ -3,7 +3,8 @@
 This repository contains an implementation of the kernel conditional moment (KCM) tests proposed in our [UAI2020](http://www.auai.org/uai2020/) paper entitled 
 
 **Kernel Conditional Moment Test via Maximum Moment Restriction**.
-*Krikamol Muandet, Wittawat Jitkrittum, and Jonas M. K\"ubler*
+
+*Krikamol Muandet, Wittawat Jitkrittum, and Jonas M. Kuebler*
 
 ## Experiments
 
