@@ -1,6 +1,5 @@
 function [ mdx ] = median_inter(X)
-%UNTITLED6 Summary of this function goes here
-%   Detailed explanation goes here
+%MEDIAN_INTER This function efficiently calculates the median heuristic
 
 [n,d] = size(X);
 

@@ -4,7 +4,6 @@ addpath('../')
 addpath('../utils')
 
 % initialization
-
 rng(trial_no) % For reproducibility
 
 alpha = 0.05;
@@ -16,7 +15,7 @@ if strcmp(experiment_name,'samplesize')
     ns = [100,200,400,600,800,1000];
 elseif strcmp(experiment_name,'delta')
     dim = 5;
-    delta = [0.001, 0.005, 0.01, 0.05, 0.1, 0.15];
+    delta = linspace(1e-4,1e-2,6);
     ns = 100;
 elseif strcmp(experiment_name,'error')
     dim = 5;
@@ -28,5 +27,5 @@ end
 outdir = strcat('results/',dgp,'/',experiment_name,'/');
 outfile = strcat(outdir,dgp,'_',experiment_name,'_',int2str(trial_no+1),'.mat');
 
-% experiment
+% initiate experiments
 multiple_experiments_on_cluster(dgp,tests,ns,dim,delta,1,bsize,alpha,outfile);

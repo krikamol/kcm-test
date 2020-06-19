@@ -1,17 +1,7 @@
 function multiple_experiments(dgp,tests,ns,dim,delta,num_repeats,bsize,alpha)
 %MULTIPLE_EXPERIMENTS Conduct experiments with varying sample sizes
-%   Detailed explanation goes here
 
 plot_title = '';
-%if strcmp(dgp,'linreg_hom')
-%    plot_title = 'Linear Regression (HM)';
-%elseif strcmp(dgp,'linreg_het')
-%    plot_title = 'Linear Regression (HT)';
-%elseif strcmp(dgp,'simeq')
-%    plot_title = 'Simultaneous Equations';
-%else
-%    error('KCM: The specified DGP is unavailable.');
-%end
 
 if length(ns) > 1 && length(delta) == 1 && length(dim) == 1
 

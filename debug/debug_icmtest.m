@@ -4,7 +4,6 @@ addpath('../');
 addpath('../utils/');
 
 % initialize variables
-
 dgp = "linreg_hom";
 alpha = 0.05;
 bsize = 1000;
@@ -14,7 +13,6 @@ delta = 0;
 theta = ones([1,d+1]);
 
 [Z,X,gres] = generate_data(dgp,delta,n,d);
-%theta = estimate_parameters(dgp,Z);
 [~,~,~,bvals] = icmtest(Z,X,gres,@icm_grad_linear,@icm_loss_linear,theta,bsize,alpha);
 
 cns = zeros(1,bsize);
@@ -23,8 +21,6 @@ for i=1:bsize
     [Z,X,gres] = generate_data(dgp,delta,n,d);
     z = [Z.y, Z.x];
     x = X.x;
-    
-    %theta = estimate_parameters(dgp,Z);
         
     % evaluate the generalized residuals and the kernel h_theta
     G = gres(Z,theta);

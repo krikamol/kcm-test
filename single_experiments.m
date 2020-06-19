@@ -1,10 +1,9 @@
 function [pwrs,errs] = single_experiments(dgp,tests,n,d,delta,num_exps,bsize,alpha)
-%SINGLE_EXPERIMENTS Conduct repeated experiments for one parameter
-%setting.
+%SINGLE_EXPERIMENTS Conduct repeated experiments for one parameter setting.
 %
 %   INPUT: 
 %       dgp - the data generating process
-%       tests - the test statistics: 'kcm','icm','smooth','mtest'
+%       tests - the test statistics: 'kcm','icm', and 'smooth'
 %       n - sample size
 %       d - dimensionality of X
 %       delta - the parameter controlling the deviation from the null
@@ -62,14 +61,13 @@ for i=1:num_exps
             % smooth test
             [h,~,~,~] = smoothtest(Z,X,gres,theta,bsize,alpha);
             decs(t,i) = h;
-        elseif strcmp(tests(t),'mtest')
-            % M-test
         else
             error('KCM: The specified test does not exist.');
         end
     end
 end
 
+% compute the powers and type-I errors
 for t=1:n_tests
     [pwrs(t),errs(t)] = compute_errors(decs(t,:),true_decs);
 end

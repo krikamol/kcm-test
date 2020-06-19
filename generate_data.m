@@ -36,21 +36,23 @@ if strcmp(dgp,'linreg_hom') || strcmp(dgp,'linreg_het')
     gres = @gres_linear;
     
 elseif strcmp(dgp,'simeq')
-    %
+    
+    % Lambdas
     L11 = 1;
     L12 = -1;
     L21 = 1;
     L22 = 1;
     
-    %
+    % exogeneous variables and noise term
     V = mvnrnd([0,0],1e-3*[1,1/sqrt(2);1/sqrt(2),1],n);
     R = normrnd(0,1,[n,1]);
     W = normrnd(0,1,[n,1]);
     
+    % quantity and price
     Q = L11.*R + L12.*W + V(:,1);
-    %P = L21.*R + L22.*W + (delta/2.0).*(W.*W) + V(:,2);
     P = L21.*R + L22.*W + V(:,2);
-    
+    %P = L21.*R + L22.*W + (delta/2.0).*(W.*W) + V(:,2);
+
     Z = struct('q',Q,'p',P,'r',R,'w',W);
     X = struct('r',R,'w',W);
     

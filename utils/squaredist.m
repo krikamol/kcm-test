@@ -1,5 +1,5 @@
 function D = squaredist(x,z,varargin)
-% a function to compute a matrix of pairwise square distance
+%SQUAREDIST This function computes a matrix of pairwise square distance
 % between two sets of vectors
 
 % two sets of vectors are identical if only one is given

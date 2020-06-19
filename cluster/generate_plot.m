@@ -16,8 +16,6 @@ if strcmp(experiment_name,'samplesize')
     ns = [100,200,400,600,800,1000];
 elseif strcmp(experiment_name,'delta')
     dim = 5;
-    %delta = [0.001,0.005,0.01,0.05,0.1,0.15];
-    %ns = 100;
     delta = linspace(1e-4,1e-2,6);
     ns = 500;
 elseif strcmp(experiment_name,'error')

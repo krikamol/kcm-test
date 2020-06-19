@@ -13,15 +13,12 @@ delta = 0;
 theta = ones([1,d+1]);
 
 [Z,X,gres] = generate_data(dgp,delta,n,d);
-%theta = estimate_parameters(dgp,Z);
 [~,~,~,bvals] = smoothtest(Z,X,gres,theta,bsize,alpha);
 
 mhs = zeros(1,bsize);
 for i=1:bsize
     
     [Z,X,gres] = generate_data(dgp,delta,n,d);
-
-    %theta = estimate_parameters(dgp,Z);
     
     % calculate the bandwidth parameter h and evaluate the kernel k
     h = d*(n^(-0.2));
@@ -43,7 +40,6 @@ for i=1:bsize
 end
 
 % plot the histograms
-h1 = histogram(bvals);
-hold on
+h1 = histogram(bvals); hold on
 h2 = histogram(mhs);
 
